@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DM to Done - Premium Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0a0f;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    .section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+      position: relative;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-bottom: 1px solid rgba(217, 119, 6, 0.1);
+    }
+
+    .section:nth-child(even) {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .accent-line {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .content-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-item {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.4));
+      border-left: 4px solid #f59e0b;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #f1f5f9;
+      backdrop-filter: blur(10px);
+    }
+
+    .numbered-item {
+      display: flex;
+      align-items: start;
+      gap: 2rem;
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.6));
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    .number-badge {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: white;
+      min-width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+    }
+
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.6));
+      border: 2px solid rgba(217, 119, 6, 0.3);
+      border-radius: 16px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      height: 100%;
+    }
+
+    .pricing-card.featured {
+      border-color: #f59e0b;
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+      position: relative;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .quote-block {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.7));
+      border-left: 4px solid #f59e0b;
+      padding: 3rem;
+      border-radius: 12px;
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: #e2e8f0;
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .quote-mark {
+      position: absolute;
+      font-size: 6rem;
+      color: rgba(217, 119, 6, 0.2);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .quote-mark.open {
+      top: 1rem;
+      left: 1rem;
+    }
+
+    .quote-mark.close {
+      bottom: 1rem;
+      right: 1rem;
+    }
+
+    .host-card {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(245, 158, 11, 0.05));
+      border: 2px solid rgba(217, 119, 6, 0.3);
+      border-radius: 16px;
+      padding: 3rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .decorative-element {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    /* Floating Navigation */
+    .floating-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(217, 119, 6, 0.3);
+      border: 2px solid rgba(217, 119, 6, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-dot:hover {
+      background: rgba(217, 119, 6, 0.6);
+      transform: scale(1.2);
+    }
+
+    .nav-dot.active {
+      background: #f59e0b;
+      border-color: #f59e0b;
+      box-shadow: 0 0 20px rgba(217, 119, 6, 0.6);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: bounce 2s infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      padding: 1.75rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.4);
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(217, 119, 6, 0.5);
+    }
+
+    .cta-button-secondary {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.2), rgba(245, 158, 11, 0.1));
+      border: 2px solid #f59e0b;
+      padding: 1.75rem 2.5rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .cta-button-secondary:hover {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.3), rgba(245, 158, 11, 0.2));
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .section-title { font-size: 2.5rem; }
+      .section-subtitle { font-size: 1.25rem; }
+      .content-text { font-size: 1.1rem; }
+      .content-item { font-size: 1.1rem; padding: 1.5rem; }
+      .numbered-item { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+      .floating-nav { display: none; }
+      .section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Navigation -->
+  <div class="floating-nav" id="floating-nav">
+    <!-- Navigation dots will be generated by JavaScript -->
+  </div>
+
+  <!-- Section 1: Title -->
+  <section class="section" id="section-1">
+    <div class="decorative-element" style="width: 500px; height: 500px; background: radial-gradient(circle, #f59e0b, transparent); top: -200px; right: -200px;"></div>
+    <div class="container" style="text-align: center;">
+      <div class="accent-line" style="margin: 0 auto 3rem;"></div>
+      <h1 style="font-size: 5rem; font-weight: 900; background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem; line-height: 1.1;">
+        DM to Done
+      </h1>
+      <p style="font-size: 2rem; color: #cbd5e1; margin-bottom: 4rem; line-height: 1.6; font-weight: 300; max-width: 900px; margin-left: auto; margin-right: auto;">
+        A Sales System That Turns Conversations into Clients—Without Feeling Salesy
+      </p>
+      <div class="host-card">
+        <p style="color: #f59e0b; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">
+          Hosted by
+        </p>
+        <p style="font-size: 2rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.5rem;">
+          Jori O'Neale
+        </p>
+        <p style="font-size: 1.3rem; color: #cbd5e1; font-weight: 300;">
+          Ghostwriter • CEO & CSO • AI Wizard
+        </p>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <p style="font-size: 0.9rem; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px;">Scroll</p>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Section 2: Why You're Here -->
+  <section class="section" id="section-2">
+    <div class="decorative-element" style="width: 400px; height: 400px; background: radial-gradient(circle, #d97706, transparent); bottom: -150px; left: -150px;"></div>
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Why You're Here</h2>
+      <div style="max-width: 900px;">
+        <p class="content-text" style="font-size: 1.5rem; margin-bottom: 2.5rem;">
+          You're doing all the right things: showing up, posting, even starting DMs…
+        </p>
+        <p class="content-text" style="font-size: 1.5rem; margin-bottom: 3rem;">
+          But they're not converting.
+        </p>
+        <div style="height: 2rem;"></div>
+        <p class="content-text" style="font-size: 1.6rem; color: #f59e0b; font-weight: 500;">
+          You're not bad at sales. You just don't have a system that fits you — until now.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Client Wins -->
+  <section class="section" id="section-3">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Client Wins & Real Results</h2>
+      <p class="section-subtitle">Here's what this growth engine delivers:</p>
+      <div style="max-width: 1000px;">
+        <div class="content-item">6 discovery calls in 1 week from cold outreach (I can show you the screenshots)</div>
+        <div class="content-item">Creatives delegating outreach without losing their brand voice</div>
+        <div class="content-item">No more ghosting. Just qualified leads booking calls.</div>
+        <div class="content-item">Consistent pipeline without feeling salesy or pushy</div>
+        <p class="content-text" style="margin-top: 2.5rem; color: #fbbf24; font-weight: 500; font-size: 1.4rem;">
+          These results are real and verifiable — because the system works.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Why Most Outreach Fails -->
+  <section class="section" id="section-4">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Why Most Outreach Fails</h2>
+      <div style="max-width: 1000px;">
+        <div class="content-item">Cold pitch scripts that sound robotic</div>
+        <div class="content-item">No follow-up flow or nurture sequence</div>
+        <div class="content-item">Generic messaging that doesn't connect</div>
+        <div class="content-item">No way to delegate without losing your authentic voice</div>
+        <p class="content-text" style="margin-top: 3rem; font-size: 1.5rem; color: #fbbf24; font-weight: 500;">
+          DM to Done fixes all of that with a human-first, fully integrated scaling system.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: What DM to Done Is -->
+  <section class="section" id="section-5">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">What DM to Done Is</h2>
+      <p class="section-subtitle">A done-for-you outreach system built for:</p>
+      <div style="max-width: 1000px;">
+        <div class="content-item">Coaches who want consistent client flow</div>
+        <div class="content-item">Consultants ready to scale their expertise</div>
+        <div class="content-item">Creatives who need authentic lead generation</div>
+        <div class="content-item">Small Business Owners seeking growth without overwhelm</div>
+        <div style="height: 2rem;"></div>
+        <p class="content-text" style="font-weight: 600; color: #fbbf24; font-size: 1.4rem; margin-bottom: 1.5rem;">This all-in-one system helps you:</p>
+        <p class="content-text" style="padding-left: 1.5rem;">• Start genuine conversations that convert</p>
+        <p class="content-text" style="padding-left: 1.5rem;">• Book calls with qualified leads who are ready to buy</p>
+        <p class="content-text" style="padding-left: 1.5rem;">• Scale your outreach without sounding salesy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: The Framework -->
+  <section class="section" id="section-6">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">The DM to Done Framework</h2>
+      <p class="section-subtitle">Your complete growth engine — 5 simple pillars:</p>
+      <div style="max-width: 1000px;">
+        <div class="numbered-item">
+          <div class="number-badge">1</div>
+          <p style="font-size: 1.3rem; line-height: 1.6; color: #f1f5f9;">Identity-Aligned Messaging (sounds like you, not a robot)</p>
+        </div>
+        <div class="numbered-item">
+          <div class="number-badge">2</div>
+          <p style="font-size: 1.3rem; line-height: 1.6; color: #f1f5f9;">Natural Conversation Starters (no cold pitches)</p>
+        </div>
+        <div class="numbered-item">
+          <div class="number-badge">3</div>
+          <p style="font-size: 1.3rem; line-height: 1.6; color: #f1f5f9;">Consent-Based Call Invites (they want to talk to you)</p>
+        </div>
+        <div class="numbered-item">
+          <div class="number-badge">4</div>
+          <p style="font-size: 1.3rem; line-height: 1.6; color: #f1f5f9;">Follow-Up That Feels Good (nurture sequences included)</p>
+        </div>
+        <div class="numbered-item">
+          <div class="number-badge">5</div>
+          <p style="font-size: 1.3rem; line-height: 1.6; color: #f1f5f9;">Sustainable Outreach System — Easy to use, easier to delegate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Behind the Scenes -->
+  <section class="section" id="section-7">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Behind the Scenes</h2>
+      <p class="section-subtitle">Your plug-and-play system includes:</p>
+      <div style="max-width: 1000px;">
+        <div class="content-item">Personalized outreach flows tailored to your voice</div>
+        <div class="content-item">SOPs made simple — no overwhelm, just clarity</div>
+        <div class="content-item">DM templates, call scripts, and follow-up sequences</div>
+        <div class="content-item">Clear implementation guides for easy execution</div>
+        <div class="content-item">Nurture messaging to improve show-up rates</div>
+        <div style="height: 2rem;"></div>
+        <p class="content-text" style="font-weight: 600; color: #fbbf24; font-size: 1.4rem; margin-bottom: 1.5rem;">Bonus add-on available:</p>
+        <div class="content-item" style="border-color: #fbbf24;">Custom AI Assistant trained in your exact voice and style</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: The Trust Trinity -->
+  <section class="section" id="section-8">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">The Trust Trinity</h2>
+      <p class="section-subtitle">For this to work, you need all three:</p>
+      <div style="max-width: 1000px;">
+        <div class="numbered-item">
+          <div class="number-badge">1</div>
+          <div>
+            <p style="font-size: 1.4rem; font-weight: 600; color: #fbbf24; margin-bottom: 0.75rem;">Trust the System</p>
+            <p style="font-size: 1.2rem; line-height: 1.6; color: #e2e8f0;">This isn't theory — it's a proven process with real results</p>
+          </div>
+        </div>
+        <div class="numbered-item">
+          <div class="number-badge">2</div>
+          <div>
+            <p style="font-size: 1.4rem; font-weight: 600; color: #fbbf24; margin-bottom: 0.75rem;">Trust Me</p>
+            <p style="font-size: 1.2rem; line-height: 1.6; color: #e2e8f0;">I've done this for myself and clients with verifiable outcomes</p>
+          </div>
+        </div>
+        <div class="numbered-item">
+          <div class="number-badge">3</div>
+          <div>
+            <p style="font-size: 1.4rem; font-weight: 600; color: #fbbf24; margin-bottom: 0.75rem;">Trust Yourself</p>
+            <p style="font-size: 1.2rem; line-height: 1.6; color: #e2e8f0;">You must be willing to take action and do the work</p>
+          </div>
+        </div>
+        <p class="content-text" style="margin-top: 2.5rem; font-style: italic; color: #cbd5e1; font-size: 1.3rem;">
+          Because there is no one-size-fits-all solution, if you want to make sure this will work for you, here's what you need to know...
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Who This Is NOT For -->
+  <section class="section" id="section-9">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Who This Is NOT For</h2>
+      <p class="section-subtitle" style="color: #ef4444;">Please exit now if you're:</p>
+      <div style="max-width: 1000px;">
+        <div class="content-item" style="border-color: #ef4444;">Looking for a magic bullet or get-rich-quick scheme</div>
+        <div class="content-item" style="border-color: #ef4444;">Unwilling to do the work or take consistent action</div>
+        <div class="content-item" style="border-color: #ef4444;">Expecting 100% of connections to be qualified (we generate leads, you qualify them)</div>
+        <div class="content-item" style="border-color: #ef4444;">Not ready to invest in a real growth system</div>
+        <div style="height: 2rem;"></div>
+        <p class="content-text" style="font-size: 1.4rem; font-weight: 500; color: #cbd5e1;">
+          If that's you, this presentation isn't worth your time.
+        </p>
+        <div style="height: 1.5rem;"></div>
+        <p class="content-text" style="font-size: 1.5rem; font-weight: 600; color: #fbbf24;">
+          Still here? Good. Let's talk about who this IS for...
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Who This IS For -->
+  <section class="section" id="section-10">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Who This IS For</h2>
+      <p class="section-subtitle" style="color: #10b981;">This is perfect if you:</p>
+      <div style="max-width: 1000px;">
+        <div class="content-item" style="border-color: #10b981;">You're ready to build through service, not spam</div>
+        <div class="content-item" style="border-color: #10b981;">You want a scaling system that feels natural and authentic</div>
+        <div class="content-item" style="border-color: #10b981;">You want clear structure that lets you delegate and grow</div>
+        <div class="content-item" style="border-color: #10b981;">You want messaging that works and sounds exactly like you</div>
+        <div class="content-item" style="border-color: #10b981;">You're committed to taking action on a proven system</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: Pricing -->
+  <section class="section" id="section-11">
+    <div class="container">
+      <div class="accent-line"></div>
+      <h2 class="section-title">What You Get</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+        <div class="pricing-card featured">
+          <div class="featured-badge">MOST POPULAR</div>
+          <h3 style="font-size: 1.6rem; font-weight: 700; color: #fbbf24; margin-bottom: 2rem; text-align: center;">Base System</h3>
+          <p style="font-size: 2.5rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 2.5rem;">$1,500<span style="font-size: 1.1rem; font-weight: 400; color: #cbd5e1;">/mo</span></p>
+          <div style="space-y: 1rem;">
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Complete DM System Setup</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Simple SOPs & implementation guide</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Templates, scripts & follow-up sequences</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• 30-day hands-on support</p>
+          </div>
+        </div>
+        
+        <div class="pricing-card">
+          <h3 style="font-size: 1.6rem; font-weight: 700; color: #fbbf24; margin-bottom: 2rem; text-align: center;">Available Add-Ons</h3>
+          <div style="space-y: 1rem; margin-top: 4.5rem;">
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Custom GPT assistant</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• LinkedIn content templates</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Advanced LinkedIn strategies</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Advanced nurture sequences</p>
+          </div>
+        </div>
+        
+        <div class="pricing-card">
+          <h3 style="font-size: 1.6rem; font-weight: 700; color: #fbbf24; margin-bottom: 2rem; text-align: center;">Fast Action Bonuses</h3>
+          <div style="space-y: 1rem; margin-top: 4.5rem;">
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• 30-min strategy call</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Bonus script pack</p>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1rem;">• Priority setup support</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 12: CTA -->
+  <section class="section" id="section-12">
+    <div class="container" style="text-align: center;">
+      <div class="accent-line" style="margin: 0 auto 2rem;"></div>
+      <h2 class="section-title" style="font-size: 3.5rem; text-align: center;">Let's Get You from DM to Done</h2>
+      
+      <div class="quote-block">
+        <span class="quote-mark open">"</span>
+        <p style="position: relative; z-index: 1;">
+          This is not a funnel. It's not a trick. This is a repeatable growth engine that lets you show up and scale with complete authenticity.
+        </p>
+        <span class="quote-mark close">"</span>
+      </div>
+
+      <div style="display: grid; gap: 2rem; max-width: 700px; margin: 3rem auto 0;">
+        <div class="cta-button">
+          <p style="font-size: 1.4rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 1px;">
+            Apply to work with Jori directly
+          </p>
+        </div>
+        <div class="cta-button-secondary">
+          <p style="font-size: 1.4rem; font-weight: 600; color: #fbbf24; text-transform: uppercase; letter-spacing: 1px;">
+            Get the DIY system and start today
+          </p>
+        </div>
+        <div class="cta-button-secondary">
+          <p style="font-size: 1.4rem; font-weight: 600; color: #fbbf24; text-transform: uppercase; letter-spacing: 1px;">
+            Add premium features anytime
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Create navigation dots
+    const sections = document.querySelectorAll('.section');
+    const floatingNav = document.getElementById('floating-nav');
+    
+    sections.forEach((section, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('nav-dot');
+      dot.setAttribute('data-section', index);
+      dot.addEventListener('click', () => {
+        section.scrollIntoView({ behavior: 'smooth' });
+      });
+      floatingNav.appendChild(dot);
+    });
+
+    // Update active nav dot on scroll
+    const observerOptions = {
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = Array.from(sections).indexOf(entry.target);
+          document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+          document.querySelectorAll('.nav-dot')[index].classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // Hide scroll indicator after first scroll
+    let hasScrolled = false;
+    window.addEventListener('scroll', () => {
+      if (!hasScrolled && window.scrollY > 100) {
+        hasScrolled = true;
+        document.querySelector('.scroll-indicator').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
